@@ -1,0 +1,9 @@
+.git
+.agents
+.codex
+adminer
+config.local.php
+tests
+node_modules
+*.sqlite
+*.log
