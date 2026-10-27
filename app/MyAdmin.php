@@ -223,7 +223,8 @@ final class MyAdmin extends Adminer
 
     public function loginForm()
     {
-        echo '<div class="am-login-heading"><span class="am-eyebrow">DATABASE WORKSPACE</span><h1>I tuoi database.<br>Un posto solo.</h1><p>Accedi al server e inizia a lavorare.</p></div>';
+        echo '<div class="am-sidebar-head">', $this->name(), '<span class="am-edition">DATABASE MANAGER</span></div>';
+        //echo '<div class="am-login-heading"><span class="am-eyebrow">DATABASE WORKSPACE</span><h1>I tuoi database.<br>Un posto solo.</h1><p>Accedi al server e inizia a lavorare.</p></div>';
         $drivers = ['mssql' => 'Microsoft SQL Server', 'server' => 'MySQL / MariaDB', 'pgsql' => 'PostgreSQL', 'sqlite' => 'SQLite'];
         $selected = isset($_GET['username']) || isset($_GET['mssql']) ? DRIVER : 'mssql';
         echo '<div class="am-login-fields"><label for="am-driver">Sistema</label><select id="am-driver" name="auth[driver]">', optionlist($drivers, $selected), '</select>';
@@ -254,13 +255,13 @@ final class MyAdmin extends Adminer
 
     public function navigation($missing)
     {
-        echo '<div class="am-sidebar-head">', $this->name(), '<span class="am-edition">DATABASE MANAGER</span></div>';
+        /* echo '<div class="am-sidebar-head">', $this->name(), '<span class="am-edition">DATABASE MANAGER</span></div>';
         if ($missing === 'auth') {
-            echo '<div class="am-login-aside"><span class="am-aside-tag">IL TUO NUOVO SPAZIO DI LAVORO</span><h2>La familiarità di phpMyAdmin.<br>La flessibilità di Adminer.</h2><p>Un’interfaccia ordinata per esplorare, interrogare e gestire i tuoi dati.</p><div class="am-login-features"><div><span>01</span><section><h3>SQL Server, in primo piano</h3><p>Database, schemi, tabelle e viste. Con supporto alle connessioni cifrate.</p></section></div><div><span>02</span><section><h3>Tutti gli strumenti, a portata di mano</h3><p>Dati, struttura, query SQL, importazione ed esportazione.</p></section></div><div><span>03</span><section><h3>Leggero. Pronto per Ubuntu.</h3><p>PHP e il tuo database. Nessun servizio applicativo aggiuntivo.</p></section></div></div><div class="am-supported"><span>MICROSOFT SQL SERVER</span><span>MYSQL</span><span>POSTGRESQL</span><span>SQLITE</span></div></div>';
+            echo '<div class="am-login-aside"><h2>La familiarità di phpMyAdmin.<br>La flessibilità di Adminer.</h2></div>';
             return;
-        }
+        } */
 
-        echo '<div class="am-server"><span class="am-status-dot"></span><div><strong>', h(SERVER ?: 'localhost'), '</strong><small>', h(get_driver(DRIVER)), '</small></div><span class="am-server-icon" aria-hidden="true">▱</span></div>';
+        /* echo '<div class="am-server"><span class="am-status-dot"></span><div><strong>', h(SERVER ?: 'localhost'), '</strong><small>', h(get_driver(DRIVER)), '</small></div><span class="am-server-icon" aria-hidden="true">▱</span></div>'; */
         $tables = [];
         if (DB !== '' && !$missing && ($_GET['ns'] ?? '') !== '') {
             connection()->select_db(DB);
